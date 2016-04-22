@@ -24,7 +24,12 @@ module.exports = {
     }]
   },
   devtool: 'source-map',
-  plugins: new webpack.optimize.UglifyJsPlugin({
-    minimize: true
-  })
+  plugins: [
+    // new webpack.optimize.UglifyJsPlugin({
+    //   minimize: true,
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
+  ]
 };

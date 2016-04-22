@@ -5,7 +5,8 @@
     .module('utils.codehangar')
     .config(routeConfig);
 
-  /** @ngInject */
+  routeConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+
   function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -15,9 +16,9 @@
         url: '/',
         views: {
           'content': {
-            templateUrl: 'views/Utils/Utils.html',
-            controller: 'UtilsCtrl',
-            controllerAs: 'UtilsCtrl'
+            templateUrl: 'views/StripeToken/StripeToken.html',
+            controller: 'StripeTokenCtrl',
+            controllerAs: 'vm'
           }
         }
       });

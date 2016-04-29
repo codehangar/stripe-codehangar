@@ -1,5 +1,3 @@
-console.log('webpack');
-
 // FAVICONS & IMAGES
 require.context('./components', true, /^\.\//);
 require.context('./favicons', true, /^\.\//);
@@ -27,6 +25,9 @@ require('./index.routes.js');
 
 // JS VIEW CONTROLLERS
 require('./views/StripeToken/StripeTokenCtrl.js');
+
+// JS COMPONENTS
+require('./components/Footer/Footer.js');
 
 // JS SERVICES
 require('./services/card-history.service.js');

@@ -1,2 +1,22 @@
 @import "/bootstrap-codehangar-vars";
 @import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+$brand-teal: #2aa198;
+
+.newsletter {
+  background: $gray-dark;
+  color: #fff;
+  p {
+    color: $gray
+  }
+  .submit {
+    // width: 10%;
+  }
+}
+
+.no-pad-right {
+  padding-right: 0
+}
+.no-pad-left {
+  padding-left: 0
+}

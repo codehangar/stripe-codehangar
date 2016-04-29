@@ -11,9 +11,20 @@
     var vm = this;
 
     vm.selectPreset = function(selectedPreset) {
+
+      if (selectedPreset) {
+        analytics.track('stripe.selectPreset', {
+          "number": selectedPreset.number,
+          "cvc": selectedPreset.cvc,
+          "exp_month": selectedPreset.exp_month,
+          "exp_year": selectedPreset.exp_year
+        });
+      } else {
+        selectedPreset = vm.cards[0];
+      }
+
       vm.selectedPreset = selectedPreset;
       vm.card = angular.copy(selectedPreset);
-      // vm.card = selectedPreset;
     };
 
     vm.checkout = function(card) {
@@ -29,11 +40,10 @@
         "exp_year": card.exp_year
       }
 
-      console.log(payload)
+      analytics.track('stripe.checkout', payload);
 
       stripe.card.createToken(payload)
         .then(function(response) {
-          console.log("response", response)
           vm.stripeResponse = response;
         })
         .catch(function(err) {
@@ -49,7 +59,7 @@
 
     vm.init = function() {
       vm.cards = StripeCards.cards;
-      vm.selectPreset(vm.cards[0]);
+      vm.selectPreset();
     };
     vm.init();
   }

@@ -1,7 +1,13 @@
 @import "/bootstrap-codehangar-vars";
 @import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
 $brand-teal: #2aa198;
+.no-pad-right {
+  padding-right: 0
+}
+
+.no-pad-left {
+  padding-left: 0
+}
 
 .newsletter {
   background: $gray-dark;
@@ -14,9 +20,13 @@ $brand-teal: #2aa198;
   }
 }
 
-.no-pad-right {
-  padding-right: 0
+.footer-copyright {
+  background: $gray-darker;
+  height: 60px;
+  font-size: $font-size-small
 }
-.no-pad-left {
-  padding-left: 0
+
+.copyright-text {
+  margin-left: 30px;
+  line-height: 60px;
 }

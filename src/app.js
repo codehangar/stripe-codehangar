@@ -28,6 +28,7 @@ require('./views/StripeToken/StripeTokenCtrl.js');
 
 // JS COMPONENTS
 require('./components/Footer/Footer.js');
+require('./components/Newsletter/Newsletter.js');
 
 // JS SERVICES
 require('./services/card-history.service.js');

@@ -25,6 +25,7 @@ require('./index.routes.js');
 
 // JS VIEW CONTROLLERS
 require('./views/StripeToken/StripeTokenCtrl.js');
+require('./views/StripeApp/StripeAppCtrl.js');
 
 // JS COMPONENTS
 require('./components/Footer/Footer.js');

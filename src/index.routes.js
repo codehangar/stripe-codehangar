@@ -21,6 +21,16 @@
             controllerAs: 'vm'
           }
         }
+      })
+      .state('app', {
+        url: '/app',
+        views: {
+          'content': {
+            templateUrl: 'views/StripeApp/StripeApp.html',
+            controller: 'StripeAppCtrl',
+            controllerAs: 'vm'
+          }
+        }
       });
 
     $urlRouterProvider.rule(function($injector, $location) {

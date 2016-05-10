@@ -3,7 +3,7 @@
 
   angular
     .module('utils.codehangar')
-    .controller('StripeTokenCtrl', controller);
+    .controller('StripeAppCtrl', controller);
 
   controller.$inject = ['CardHistory', 'StripeCards', 'stripe'];
 

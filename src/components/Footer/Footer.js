@@ -8,7 +8,9 @@
   function directive() {
     return {
       restrict: 'A',
-      scope: {},
+      scope: {
+        fixed: '@'
+      },
       templateUrl: 'components/Footer/Footer.html',
       controller: controller,
       controllerAs: 'vm',
@@ -19,26 +21,7 @@
   function controller() {
     var vm = this;
 
-    vm.submit = function(email) {
-      if (!email) {
-        return;
-      }
-
-      analytics.alias(email, {}, {}, function() {
-        analytics.identify(email, {
-          email: email
-        });
-
-        analytics.track('email subscribe', {
-          source: 'stripe.codehangar',
-          email: email,
-          position: 'page bottom'
-        });
-      })
-    }
-
     vm.init = function() {
-
     };
     vm.init();
   }

@@ -5,9 +5,9 @@
     .module('utils.codehangar')
     .controller('StripeAppCtrl', controller);
 
-  controller.$inject = ['CardHistory', 'StripeCards', 'stripe'];
+  controller.$inject = ['CardHistory', 'StripeCards', 'stripe', '$location', '$anchorScroll'];
 
-  function controller(CardHistory, StripeCards, stripe) {
+  function controller(CardHistory, StripeCards, stripe, $location, $anchorScroll) {
     var vm = this;
 
     vm.selectPreset = function(selectedPreset) {
@@ -45,6 +45,9 @@
       stripe.card.createToken(payload)
         .then(function(response) {
           vm.stripeResponse = response;
+          $location.hash('result');
+          // call $anchorScroll()
+          $anchorScroll();
         })
         .catch(function(err) {
           vm.stripeError = err;

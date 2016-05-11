@@ -30,6 +30,7 @@ require('./views/StripeApp/StripeAppCtrl.js');
 // JS COMPONENTS
 require('./components/Footer/Footer.js');
 require('./components/Newsletter/Newsletter.js');
+require('./components/AppHeader/AppHeader.js');
 
 // JS SERVICES
 require('./services/card-history.service.js');

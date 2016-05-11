@@ -1,115 +1,130 @@
-<!-- HEADER -->
-<div ng-include="'components/Header-Utils/index.html'"></div>
+<div class="stripe-app">
 
-<div class="container">
-  <div class="row" style="margin:60px 0;">
-    <div class="col-sm-12">
-      <h1 class="text-center">Stripe Token Generator</h1>
-      <p class="lead text-center">Speed up your backend Stripe API integrations. Stripe Token Generator gives you easy access to one-time use Stripe tokens for all of the available Stripe test credit cards.</p>
-    </div>
-  </div>
-</div>
-<hr/>
+  <!-- HEADER -->
+  <div appheader></div>
 
-<div class="container">
+  <div class="container">
 
-  <div class="row">
-    <div class="col-md-4 col-md-offset-2 well">
-      <div class="form-group">
-        <label for="cardSelect" class="control-label">Pre-Fill with Stripe Test Card</label>
-        <select name="cardSelect" class="form-control" ng-options="card as (card.number + ' - ' + card.type) group by card.result for card in vm.cards" ng-model="vm.selectedPreset" ng-change="vm.selectPreset(vm.selectedPreset)"></select>
-      </div>
-    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12">
 
-    <div class="col-md-6">
-      <div class="well" ng-show="vm.card">
-        <strong>{{ vm.card.type }}</strong>
-        <span>{{ vm.card.description }}</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4 col-md-offset-2 well">
-      <form class="form" name="paymentForm" novalidate ng-submit="vm.checkout(vm.card)">
-
-        <div class="form-group" ng-hide="true">
-          <label for="name" class="control-label">Name on Card</label>
-          <input type="text" name="name" class="form-control" />
         </div>
+        <div class="col-sm-12" style="padding-bottom:.75em;">
+          <form class="form" name="paymentForm" novalidate ng-submit="vm.checkout(vm.card)">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="form-group">
+                  <label for="cardSelect" class="control-label">
+                    <div class="step">1</div> Select Stripe Test Card</label>
+                  <select name="cardSelect" class="form-control" ng-options="card as (card.number + ' - ' + card.type) group by card.result for card in vm.cards" ng-model="vm.selectedPreset" ng-change="vm.selectPreset(vm.selectedPreset)"></select>
+                </div>
+                <div class="form-group" ng-hide="true">
+                  <label for="name" class="control-label">Name on Card</label>
+                  <input type="text" name="name" class="form-control" />
+                </div>
 
-        <div class="form-group" bs-form-class="paymentForm.cardNumber">
-          <p ng-show="paymentForm.cardNumber.$invalid && paymentForm.cardNumber.$ccEagerType">
-            Looks like you're typing a {{paymentForm.cardNumber.$ccEagerType}} number!
-          </p>
+                <div class="form-group" bs-form-class="paymentForm.cardNumber">
+                  <p ng-show="paymentForm.cardNumber.$invalid && paymentForm.cardNumber.$ccEagerType">
+                    Looks like you're typing a {{paymentForm.cardNumber.$ccEagerType}} number!
+                  </p>
 
-          <label for="cardNumber" class="control-label">Card Number</label>
-          <input type="text" name="cardNumber" ng-model="vm.card.number" class="form-control" cc-number cc-format cc-eager-type />
-          <div ng-messages="paymentForm.cardNumber.$error" ng-show="paymentForm.cardNumber.$dirty">
-            <span ng-messages-include="views/partials/messages.html"></span>
-          </div>
-        </div>
+                  <label for="cardNumber" class="control-label">Card Number</label>
+                  <input type="text" name="cardNumber" ng-model="vm.card.number" class="form-control" cc-number cc-format cc-eager-type />
+                  <div ng-messages="paymentForm.cardNumber.$error" ng-show="paymentForm.cardNumber.$dirty">
+                    <span ng-messages-include="views/partials/messages.html"></span>
+                  </div>
+                </div>
 
-        <div class="form-group" bs-form-class="paymentForm.cardCVC">
-          <label for="cardCVC" class="control-label">CVC</label>
-          <input type="text" name="cardCVC" ng-model="vm.card.cvc" class="form-control" cc-cvc />
-          <div ng-messages="paymentForm.cardCVC.$error" ng-show="paymentForm.cardCVC.$dirty">
-            <span ng-messages-include="views/partials/messages.html"></span>
-          </div>
-        </div>
+                <div class="form-group" bs-form-class="paymentForm.cardCVC">
+                  <label for="cardCVC" class="control-label">CVC</label>
+                  <input type="text" name="cardCVC" ng-model="vm.card.cvc" class="form-control" cc-cvc />
+                  <div ng-messages="paymentForm.cardCVC.$error" ng-show="paymentForm.cardCVC.$dirty">
+                    <span ng-messages-include="views/partials/messages.html"></span>
+                  </div>
+                </div>
 
-        <div class="form-group" bs-form-class="paymentForm.cardCVC">
-          <label>Expiration</label>
-          <div cc-exp class="form-inline">
-            <div class="form-group" bs-form-class="paymentForm.ccExpMonth">
-              <input class="form-control input-sm" ng-model="vm.card.exp_month" name="ccExpMonth" cc-exp-month />
-              <div ng-messages="paymentForm.ccExpMonth.$error" ng-show="paymentForm.ccExpMonth.$dirty">
-                <span ng-messages-include="views/partials/messages.html"></span>
+                <div class="form-group" bs-form-class="paymentForm.cardCVC">
+                  <label>Expiration</label>
+                  <div cc-exp class="form-inline">
+                    <div class="form-group" bs-form-class="paymentForm.ccExpMonth">
+                      <input class="form-control input-sm" ng-model="vm.card.exp_month" name="ccExpMonth" cc-exp-month />
+                      <div ng-messages="paymentForm.ccExpMonth.$error" ng-show="paymentForm.ccExpMonth.$dirty">
+                        <span ng-messages-include="views/partials/messages.html"></span>
+                      </div>
+                    </div>
+                    <span> / </span>
+                    <div class="form-group" bs-form-class="paymentForm.ccExpYear">
+                      <input class="form-control input-sm" ng-model="vm.card.exp_year" name="ccExpYear" cc-exp-year />
+                      <div ng-messages="paymentForm.ccExpYear.$error" ng-show="paymentForm.ccExpYear.$dirty">
+                        <span ng-messages-include="views/partials/messages.html"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-            <span> / </span>
-            <div class="form-group" bs-form-class="paymentForm.ccExpYear">
-              <input class="form-control input-sm" ng-model="vm.card.exp_year" name="ccExpYear" cc-exp-year />
-              <div ng-messages="paymentForm.ccExpYear.$error" ng-show="paymentForm.ccExpYear.$dirty">
-                <span ng-messages-include="views/partials/messages.html"></span>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <label for="cardSelect" class="control-label">
+                  <div class="step">2</div> Submit Credit Card Form</label>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-12">
+          <div class="well" ng-show="vm.card">
+            <strong>{{ vm.card.type }}</strong>
+            <span>{{ vm.card.description }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <label for="cardSelect" class="control-label">
+              <div class="step">3</div> Grab Your Token</label>
+
+            <div class="col-sm-12" id="result">
+              <div ng-show="vm.stripeResponse">
+                <div class="alert alert-success">Success!</div>
+                <!-- <p>Stripe Token: <strong>{{vm.stripeResponse.id}}</strong></p> -->
+                <pre>{{ vm.stripeResponse | json}}</pre>
+              </div>
+              <div ng-show="vm.stripeError">
+                <div class="alert alert-danger">Error!</div>
+                <pre>{{ vm.stripeError | json}}</pre>
               </div>
             </div>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-lg btn-danger warning-theme pull-right">Test Checkout</button>
-      </form>
-    </div>
-
-    <div class="col-md-6">
-      <div class="well" ng-show="vm.stripeResponse">
-        <div class="alert alert-success">Success!</div>
-        <pre>{{ vm.stripeResponse | json}}</pre>
       </div>
-      <div class="well" ng-show="vm.stripeError">
-        <div class="alert alert-danger">Error!</div>
-        <pre>{{ vm.stripeError | json}}</pre>
-      </div>
-    </div>
 
-    <div ng-if="false">
-      <pre>{{ paymentForm | json}}</pre>
-      <form name="paymentForm">
-        <input type="text" ng-model="card.number" name="cardNumber" cc-number cc-eager-type />
-      </form>
-      <p ng-show="paymentForm.cardNumber.$invalid && paymentForm.cardNumber.$ccEagerType">
-        Looks like you're typing a {{paymentForm.cardNumber.$ccEagerType}} number!
-      </p>
-      <p ng-show="paymentForm.cardNumber.$valid">
-        Yes, that looks like a valid {{paymentForm.cardNumber.$ccType}} number!
-      </p>
-    </div>
+      <!-- <div ng-if="false">
+        <pre>{{ paymentForm | json}}</pre>
+        <form name="paymentForm">
+          <input type="text" ng-model="card.number" name="cardNumber" cc-number cc-eager-type />
+        </form>
+        <p ng-show="paymentForm.cardNumber.$invalid && paymentForm.cardNumber.$ccEagerType">
+          Looks like you're typing a {{paymentForm.cardNumber.$ccEagerType}} number!
+        </p>
+        <p ng-show="paymentForm.cardNumber.$valid">
+          Yes, that looks like a valid {{paymentForm.cardNumber.$ccType}} number!
+        </p>
+      </div> -->
 
+    </div>
+    <!--End Row-->
   </div>
-  <!--End Row-->
+  <!--End container-->
+
+
+  <!-- FOOTER -->
+  <div footer class="footer-fixed"></div>
+
+
 </div>
-<!--End container-->
-
-
-<!-- FOOTER -->
-<div footer></div>

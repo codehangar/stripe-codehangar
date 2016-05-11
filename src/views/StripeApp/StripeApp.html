@@ -91,7 +91,9 @@
             <div class="col-sm-12" id="result">
               <div ng-show="vm.stripeResponse">
                 <div class="alert alert-success">Success!</div>
-                <!-- <p>Stripe Token: <strong>{{vm.stripeResponse.id}}</strong></p> -->
+                <p>Stripe Token: <strong>{{vm.stripeResponse.id}}</strong></p>
+                <label for="cardSelect" class="control-label">Full Payload:</label>
+                <!-- <textarea name="" id="" rows="10">{{vm.stripeResponse}}</textarea> -->
                 <pre>{{ vm.stripeResponse | json}}</pre>
               </div>
               <div ng-show="vm.stripeError">

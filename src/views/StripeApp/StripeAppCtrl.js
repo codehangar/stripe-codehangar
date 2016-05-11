@@ -45,9 +45,9 @@
       stripe.card.createToken(payload)
         .then(function(response) {
           vm.stripeResponse = response;
-          $location.hash('result');
+          // $location.hash('result');
           // call $anchorScroll()
-          $anchorScroll();
+          // $anchorScroll();
         })
         .catch(function(err) {
           vm.stripeError = err;

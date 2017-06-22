@@ -9,6 +9,7 @@
 
   function controller(CardHistory, StripeCards, stripe, $location, $anchorScroll) {
     var vm = this;
+    vm.publishableKey = "pk_test_WyLrQ3kjjKbCpvuHfdWfC7py";
 
     vm.selectPreset = function(selectedPreset) {
 
@@ -58,6 +59,11 @@
             console.log('Other error occurred, possibly with your API', err.message);
           }
         });
+    }
+
+    vm.setPublishableKey = function(val) {
+      console.log(this, val);
+      stripe.setPublishableKey(val);
     }
 
     vm.init = function() {

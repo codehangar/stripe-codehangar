@@ -14,9 +14,18 @@
           <form class="form" name="paymentForm" novalidate ng-submit="vm.checkout(vm.card)">
             <div class="panel panel-default">
               <div class="panel-body">
+                <div class="form-group" bs-form-class="paymentForm.publishableKey">
+                  <label for="publishableKey" class="control-label">
+                    <div class="step">1</div> Set Stripe Publishable Key</label>
+                  <input type="text" name="publishableKey" ng-model="vm.publishableKey" class="form-control" ng-change="vm.setPublishableKey(vm.publishableKey)" />
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <div class="form-group">
                   <label for="cardSelect" class="control-label">
-                    <div class="step">1</div> Select Stripe Test Card</label>
+                    <div class="step">2</div> Select Stripe Test Card</label>
                   <select name="cardSelect" class="form-control" ng-options="card as (card.number + ' - ' + card.type) group by card.result for card in vm.cards" ng-model="vm.selectedPreset" ng-change="vm.selectPreset(vm.selectedPreset)"></select>
                 </div>
                 <div class="form-group" ng-hide="true">
@@ -68,7 +77,7 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <label for="cardSelect" class="control-label">
-                  <div class="step">2</div> Submit Credit Card Form</label>
+                  <div class="step">3</div> Submit Credit Card Form</label>
                 <button type="submit" class="btn btn-primary pull-right">Submit</button>
                 <div class="clearfix"></div>
               </div>
@@ -86,7 +95,7 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <label for="cardSelect" class="control-label">
-              <div class="step">3</div> Grab Your Token</label>
+              <div class="step">4</div> Grab Your Token</label>
 
             <div class="col-xs-12" id="result">
               <div ng-show="vm.stripeResponse">
